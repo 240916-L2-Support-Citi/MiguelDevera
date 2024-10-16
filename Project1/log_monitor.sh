@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # setting up
-DB_NAME="p1test"
-DB_USER="miguel"
-DB_TABLE="log_entries.log_issues"
+DB_NAME="DUMMY_DB"
+DB_USER="DUMMY_USER"
+DB_TABLE="DUMMY_SCHEMA.DUMMY_TABLE"
 #clean up stuff
 ARCHIVE="./archive.log"
 LOGFILE="./app.log"
