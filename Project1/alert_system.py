@@ -1,8 +1,7 @@
+#!/usr/bin/python
+# note: a proper cronjob for this looks like: * * * * * path_to_venv/<venv_name>/bin/python3 /<path_to_file>/alert_system.py
 # psycopg2 is globally installed but we're using a venv
-# import psycopg2
 
-# need venv active for this one (because we did <pip install "psycopg[binary]"> in a venv)
-# this is psycopg3 - view the correct docs
 import psycopg
 import Credentials
 from GenerateMessage import generate_message
@@ -10,7 +9,6 @@ from EmailAlert import send_test_email
 from FileAlert import write_alert_file
 
 # Connect to the PostgreSQL database
-# Note - need to try catch this
 db=Credentials.DB
 table=Credentials.TABLE
 pz=Credentials.PASSWORD_PC
@@ -34,8 +32,14 @@ try:
     #  [ERROR]    |     5
 
     cursor.execute(query, prepare=True) #prepared statement
-    fatal = cursor.fetchone()[1]
-    error = cursor.fetchone()[1]
+    tempf = cursor.fetchone()
+    tempe = cursor.fetchone()
+    fatal = 0
+    error = 0
+    if(tempf): #if no errors or fatals, we can't subscript so check first
+        fatal = tempf[1]
+    if(tempe):
+        error = tempe[1]
     
     message = generate_message(fatal,error)
     print(message)

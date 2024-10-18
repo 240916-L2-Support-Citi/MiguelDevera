@@ -10,7 +10,7 @@ def write_alert_file(num_fatals, num_errors):
     temp_string = "-- CURRENT STATUS BELOW --\n"
     temp_string += generate_message(num_fatals,num_errors) # important
     try:
-        with open("alert.txt", 'w') as file: #alert is in the same directory as this script
+        with open("DUMMY_PATH.txt", 'w') as file: #alert is in the same directory as this script
             file.write(temp_string)
     except Exception as e:
         print(f"Error occurred: {e}")

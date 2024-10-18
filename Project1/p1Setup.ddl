@@ -1,4 +1,4 @@
-CREATE SCHEMA log_entries;
+CREATE SCHEMA IF NOT EXISTS log_entries;
 
 DROP TABLE IF EXISTS log_entries.log_issues;
 

@@ -1,12 +1,14 @@
 # we generate the same thing so many times we might as well make it a function
 import Credentials
+from datetime import datetime
 FATAL_WALL=Credentials.FATAL
 ERROR_WALL=Credentials.ERROR
 DB_NAME=Credentials.DB
 TABLE_NAME=Credentials.TABLE
 
 def generate_message(num_fatals, num_errors):
-    temp_string=""
+    current_time = datetime.now().time()
+    temp_string="Time of Message: {0}\n".format(current_time)
     if(num_fatals >= FATAL_WALL):
         temp_string += "!! CRITICAL ALERT !!\n"
         temp_string += "FATAL THRESHOLD ({0}) REACHED ({1}) - THE FOLLOWING SECTIONS SHOULD BE CHECKED ASAP:\n".format(str(FATAL_WALL),num_fatals)
